@@ -37,6 +37,7 @@
                 </div>
             </div>    
         </div>
+        <script src="dist/main.js" charset="utf-8"></script>
         <?php echo view("admin/_layout/js") ?>
     </body>
 </html>

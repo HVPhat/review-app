@@ -1,5 +1,7 @@
 <?php 
     echo view("admin/_layout/header");
-    echo view($sub_view);
+?>
+    <div id="root"></div>
+<?php
     echo view("admin/_layout/footer")
 ?>

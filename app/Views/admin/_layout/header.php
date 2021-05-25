@@ -22,7 +22,3 @@
     -->
     <?php echo view('admin/_layout/css') ?>
 </head>
-<?php 
-    echo view("admin/_layout/nav_bar");
-    echo view("admin/_layout/side_bar");
-?>

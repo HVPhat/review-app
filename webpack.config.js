@@ -1,4 +1,5 @@
 const path = require('path');
+var webpack = require('webpack')
 
 module.exports = {
     entry: './react/src/index.js',
@@ -24,7 +25,7 @@ module.exports = {
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
-            }
+            },
         ]
     },
     mode: 'development'

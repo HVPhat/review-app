@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter} from 'react-router-dom';
 import Routes from './routing/Routes';
-import Tables from './pages/Tables';
+import Tables from './pages/UsersTables';
 import Header from './layout/Header';
 import Sidebar from './layout/Sidebar';
 

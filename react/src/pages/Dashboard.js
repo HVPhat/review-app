@@ -155,7 +155,7 @@ const Dashboard = () => {
                         <div className="widget-content p-0">
                           <div className="widget-content-wrapper">
                             <div className="widget-content-left mr-3">
-                              <img width={42} className="rounded-circle" src="assets/images/avatars/9.jpg" alt />
+                              <img width={42} className="rounded-circle" src="assets/images/avatars/9.jpg" />
                             </div>
                             <div className="widget-content-left">
                               <div className="widget-heading">Ella-Rose Henry</div>
@@ -177,7 +177,7 @@ const Dashboard = () => {
                         <div className="widget-content p-0">
                           <div className="widget-content-wrapper">
                             <div className="widget-content-left mr-3">
-                              <img width={42} className="rounded-circle" src="assets/images/avatars/5.jpg" alt />
+                              <img width={42} className="rounded-circle" src="assets/images/avatars/5.jpg" />
                             </div>
                             <div className="widget-content-left">
                               <div className="widget-heading">Ruben Tillman</div>
@@ -199,7 +199,7 @@ const Dashboard = () => {
                         <div className="widget-content p-0">
                           <div className="widget-content-wrapper">
                             <div className="widget-content-left mr-3">
-                              <img width={42} className="rounded-circle" src="assets/images/avatars/4.jpg" alt />
+                              <img width={42} className="rounded-circle" src="assets/images/avatars/4.jpg" />
                             </div>
                             <div className="widget-content-left">
                               <div className="widget-heading">Vinnie Wagstaff</div>
@@ -221,7 +221,7 @@ const Dashboard = () => {
                         <div className="widget-content p-0">
                           <div className="widget-content-wrapper">
                             <div className="widget-content-left mr-3">
-                              <img width={42} className="rounded-circle" src="assets/images/avatars/3.jpg" alt />
+                              <img width={42} className="rounded-circle" src="assets/images/avatars/3.jpg" />
                             </div>
                             <div className="widget-content-left">
                               <div className="widget-heading">Ella-Rose Henry</div>
@@ -243,7 +243,7 @@ const Dashboard = () => {
                         <div className="widget-content p-0">
                           <div className="widget-content-wrapper">
                             <div className="widget-content-left mr-3">
-                              <img width={42} className="rounded-circle" src="assets/images/avatars/2.jpg" alt />
+                              <img width={42} className="rounded-circle" src="assets/images/avatars/2.jpg" />
                             </div>
                             <div className="widget-content-left">
                               <div className="widget-heading">Ruben Tillman</div>
@@ -483,7 +483,7 @@ const Dashboard = () => {
                       <div className="widget-content-wrapper">
                         <div className="widget-content-left mr-3">
                           <div className="widget-content-left">
-                            <img width={40} className="rounded-circle" src="assets/images/avatars/4.jpg" alt />
+                            <img width={40} className="rounded-circle" src="assets/images/avatars/4.jpg" />
                           </div>
                         </div>
                         <div className="widget-content-left flex2">
@@ -508,7 +508,7 @@ const Dashboard = () => {
                       <div className="widget-content-wrapper">
                         <div className="widget-content-left mr-3">
                           <div className="widget-content-left">
-                            <img width={40} className="rounded-circle" src="assets/images/avatars/3.jpg" alt />
+                            <img width={40} className="rounded-circle" src="assets/images/avatars/3.jpg" />
                           </div>
                         </div>
                         <div className="widget-content-left flex2">
@@ -533,7 +533,7 @@ const Dashboard = () => {
                       <div className="widget-content-wrapper">
                         <div className="widget-content-left mr-3">
                           <div className="widget-content-left">
-                            <img width={40} className="rounded-circle" src="assets/images/avatars/2.jpg" alt />
+                            <img width={40} className="rounded-circle" src="assets/images/avatars/2.jpg" />
                           </div>
                         </div>
                         <div className="widget-content-left flex2">
@@ -558,7 +558,7 @@ const Dashboard = () => {
                       <div className="widget-content-wrapper">
                         <div className="widget-content-left mr-3">
                           <div className="widget-content-left">
-                            <img width={40} className="rounded-circle" src="assets/images/avatars/1.jpg" alt /></div>
+                            <img width={40} className="rounded-circle" src="assets/images/avatars/1.jpg" /></div>
                         </div>
                         <div className="widget-content-left flex2">
                           <div className="widget-heading">Vinnie Wagstaff</div>

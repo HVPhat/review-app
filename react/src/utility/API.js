@@ -5,11 +5,11 @@ const API = axios.create({
     baseURL: 'http://localhost:8000',
     responseType: "json",
 });
-const getRequestConfiguration = () => {
+const getRequestConfiguration = (authorization) => {
     const headers = {
         "Content-Type": "application/json",
     };
-    // if(authorization) headers.authorization = `Bearer ${authorization}`;
+    if(authorization) headers.authorization = `Bearer ${authorization}`;
     return { headers };
 }
 
@@ -19,19 +19,19 @@ export const makeRequest = ({
     successCallback,
     failureCallback,
     requestType = 'POST',
-    //authorization = null,
+    authorization = null,
 }) => {
-    const requestConfiguration = getRequestConfiguration();
+    const requestConfiguration = getRequestConfiguration(authorization);
     let promise;
     switch (requestType) {
         case 'GET':
             promise = API.get(url, requestConfiguration);
             break;
         case 'POST':
-            promise = API.post(url, values /*,requestConfiguration*/);
+            promise = API.post(url, values ,requestConfiguration);
             break;
         case 'DELETE':
-            promise = API.delete(url /*,requestConfiguration*/);
+            promise = API.delete(url ,requestConfiguration);
             break;
         default:
     return;

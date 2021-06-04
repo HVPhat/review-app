@@ -80,3 +80,4 @@ defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest auto
 
 define('DEL_FLG_OFF', 0);
 define('DEL_FLG_ON', 1);
+define('IS_ADMIN', 1);

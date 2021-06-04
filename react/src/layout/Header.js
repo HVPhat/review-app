@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-const Header = () => {
+const Header = ({logout}) => {
     return (
         <>
   {/* Hello world */}
@@ -34,7 +34,8 @@ const Header = () => {
           </span>
         </button>
       </span>
-    </div>    <div className="app-header__content">
+    </div>    
+    <div className="app-header__content">
       <div className="app-header-left">
         <div className="search-wrapper">
           <div className="input-holder">
@@ -62,7 +63,8 @@ const Header = () => {
               Settings
             </a>
           </li>
-        </ul>      </div>
+        </ul>      
+      </div>
       <div className="app-header-right">
         <div className="header-btn-lg pr-0">
           <div className="widget-content p-0">
@@ -77,7 +79,7 @@ const Header = () => {
                     <button type="button" tabIndex={0} className="dropdown-item">User Account</button>
                     <button type="button" tabIndex={0} className="dropdown-item">Settings</button>
                     <h6 tabIndex={-1} className="dropdown-header">Header</h6>
-                    <button type="button" tabIndex={0} className="dropdown-item">Actions</button>
+                    <button type="button" tabIndex={0} onClick={logout} className="dropdown-item">Logout</button>
                     <div tabIndex={-1} className="dropdown-divider" />
                     <button type="button" tabIndex={0} className="dropdown-item">Dividers</button>
                   </div>
@@ -85,10 +87,10 @@ const Header = () => {
               </div>
               <div className="widget-content-left  ml-3 header-user-info">
                 <div className="widget-heading">
-                  Alina Mclourd
+                  Huỳnh Vinh Phát
                 </div>
                 <div className="widget-subheading">
-                  VP People Manager
+                  Admin
                 </div>
               </div>
               <div className="widget-content-right header-user-info ml-3">
@@ -98,7 +100,8 @@ const Header = () => {
               </div>
             </div>
           </div>
-        </div>      </div>
+        </div>      
+      </div>
     </div>
   </div>        
   <div className="ui-theme-settings">

@@ -1,6 +1,7 @@
 <?php 
 namespace App\Models;
 use CodeIgniter\Model;
+use Exception;
 
 class AccountModel extends Model
 {
@@ -12,15 +13,15 @@ class AccountModel extends Model
 
     protected $useTimestamps = true;
     protected $createdField = "created_at";
-    protected $updatedField = "";
-    protected $deletedField = "";
+    protected $updatedField = "updated_at";
+    protected $deletedField = "deleted_at";
     protected $validationRules = [];
     protected $validationMessages = [];
     protected $skipValidation = false;
     
     protected $allowedFields = [
         'id',
-        'name',
+        'user_name',
         'email',
         'password',
         'first_name',
@@ -40,4 +41,4 @@ class AccountModel extends Model
         'is_locked',
         'is_admin',
     ];
-}
+}   

@@ -7,6 +7,7 @@ import Footer from './layout/Footer';
 import {clearState, loadJWT, loadUser} from './utility/LocalStorage';
 import { useState } from 'react';
 import Login from './pages/Login';
+import { Redirect } from 'react-router-dom';
 
 const App = () => {
     const [user, setUser] = useState([])
@@ -24,14 +25,14 @@ const App = () => {
         :
         <>
             <div className="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-                    <BrowserRouter>
-                        <Header logout={onLogout} />
-                            <div className="app-main">
-                                <Sidebar />
-                                <Routes />
-                            </div>
-                    </BrowserRouter>
-                </div>
+                <BrowserRouter>
+                    <Header logout={onLogout} />
+                        <div className="app-main">
+                            <Sidebar />
+                            <Routes />
+                        </div>
+                </BrowserRouter>
+            </div>
         </>
     )
 }

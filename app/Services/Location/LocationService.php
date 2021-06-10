@@ -1,12 +1,12 @@
 <?php 
-namespace App\Services\Account;
-use App\Models\AccountModel;
+namespace App\Services\Location;
+use App\Models\LocationModel;
 use Exception;
 
-class AccountService 
+class LocationService 
 {
     public function __construct(){
-        $this->model = new AccountModel();
+        $this->model = new LocationModel();
         $this->db = \Config\Database::connect();
     }
 
@@ -32,12 +32,9 @@ class AccountService
     }
 
 	// get row information
-	public function getInfo($where){
+	public function getInfo($selects = [],$where = []){
 		$model_alias = $this->model->alias;
-
-		$selects = [
-			$model_alias.".*",
-		];
+        
 		$query = $this->createQuery()
 						->select($selects);
 		if(is_array($where) && !empty($where)){
@@ -71,18 +68,4 @@ class AccountService
 		}
 		return $id;
 	}
-    
-    public function findUserByEmailAddress(string $emailAddress)
-    {
-        $model = new AccountModel();
-        $user = $model
-            ->asArray()
-            ->where(['email' => $emailAddress, 'is_admin' => IS_ADMIN])
-            ->first();
-
-        if (!$user)
-            return false;
-
-        return $user;
-    }
 }

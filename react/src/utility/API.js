@@ -33,8 +33,8 @@ export const makeRequest = ({
         case 'DELETE':
             promise = API.delete(url ,requestConfiguration);
             break;
-        default:
-    return;
+        default: 
+            return;
     }
     promise
         .then((response) => {

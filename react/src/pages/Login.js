@@ -13,6 +13,7 @@ const Login = ({setIsAuthenticated}) => {
         email: '',
         password: '',
     };
+
     const [errors, setErrors] = useState(null);
 
     const successfulAuthenticationCallback = (data) => {
@@ -26,8 +27,8 @@ const Login = ({setIsAuthenticated}) => {
             url: `/admin/login`,
             values,
             successCallback: (data) => {
-                setIsAuthenticated();
                 successfulAuthenticationCallback(data);
+                setIsAuthenticated();
             },
             failureCallback: (errorResponse) => {
                 setErrors(errorResponse)
@@ -47,33 +48,44 @@ const Login = ({setIsAuthenticated}) => {
     });
 
     return (
-        <div className="tab-content">
-            <div className="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
-                <div className="main-card mb-3 card">
-                    {errors && <FailureAlert errors={errors}/>}
-                    <div className="card-body">
-                        <Formik
-                            initialValues={initialValues}
-                            validationSchema={validationSchema}
-                            onSubmit={submitCallback}>
-                            <Form>
-                                    <div className="col-md-6">
-                                        <div className="position-relative form-group">
-                                            <CustomInput class_name="form-control" name={'email'} label={'Email'} />
+        <div className="login-body">
+        <div class="container">
+        <div class="row">
+			<div class="col-md-5 mx-auto">
+			<div id="first">
+				<div class="myform form ">
+					 <div class="logo mb-3">
+						 <div class="col-md-12 text-center">
+                                <h1>Login</h1>
+                                {errors && <FailureAlert errors={errors}/>}
+                            <Formik
+                                initialValues={initialValues}
+                                validationSchema={validationSchema}
+                                onSubmit={submitCallback}>
+                                <Form>
+                                        <div className="col-md-12">
+                                            <div className="position-relative form-group">
+                                                <CustomInput class_name="form-control" value="" name={'email'} label={'Email'} />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="position-relative form-group">
-                                        <CustomInput type="password" class_name="form-control" name={'password'} label={'Password'} />
+                                        <div className="col-md-12">
+                                            <div className="position-relative form-group">
+                                            <CustomInput type="password" value="" class_name="form-control" name={'password'} label={'Password'} />
+                                            </div>
                                         </div>
-                                    </div>
-                                <button className="mt-2 btn btn-primary" type="submit">Login</button>
-                            </Form>
-                        </Formik>
-                    </div>
-                </div>
-            </div>
+                                    <button className="mt-2 btn btn-primary" type="submit">Login</button>
+                                </Form>
+                            </Formik>
+						 </div>
+					</div>
+                 
+				    </div>
+			    </div>
+			    </div>
+		    </div>
         </div>
+        </div>
+        
     );
 };
 export default Login;

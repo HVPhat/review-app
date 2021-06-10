@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const TableCellNavLink = ({id, text}) => {
+const PostCellNavLink = ({id, text}) => {
     return (
         <div>
             <Link to={'/admin/users/'+id}> {text} </Link>
@@ -9,4 +9,4 @@ const TableCellNavLink = ({id, text}) => {
     )
 }
 
-export default TableCellNavLink
+export default PostCellNavLink

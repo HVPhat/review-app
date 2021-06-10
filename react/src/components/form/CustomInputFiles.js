@@ -8,7 +8,7 @@ const getErrorDiv = message => {
         </div>
     );
 };
-const CustomInput = ({ class_name, name, label, type = 'text' }) => {
+const CustomInputFiles = ({ class_name, name, label, type = 'file' }) => {
     return (
         <>
             <label htmlFor={name}>{label}</label>
@@ -20,6 +20,10 @@ const CustomInput = ({ class_name, name, label, type = 'text' }) => {
                             {...field}
                             placeholder={label} 
                             className={class_name}
+                            onChange={(event) => {
+                                console.log(event.currentTarget.files[0]);
+                                setFieldValue(name, event.currentTarget.files[0]);
+                            }}
                             />
                         <ErrorMessage
                             name={name}
@@ -32,4 +36,4 @@ const CustomInput = ({ class_name, name, label, type = 'text' }) => {
     );
 };
 
-export default CustomInput;
+export default CustomInputFiles;

@@ -1,29 +1,29 @@
 import React, {useMemo, useEffect, useState} from 'react'
 import { makeRequest } from '../../utility/API'
 import { useTable } from 'react-table'
-import { COLUMNS } from '../../components/UserTablesCol'
-// import {makeRequest} from '../utility/API'
-import axios from 'axios';
+import { COLUMNS } from '../../components/table/PostTableCol'
+import { loadJWT } from '../../utility/LocalStorage';
 
 const PostTables = () => {
-  const [users, setUsers] = useState([]);
+  const [posts, setPost] = useState([]);
   useEffect(() => {
     makeRequest({
-        url: 'admin/users/all',
+        url: 'admin/posts/all',
         successCallback: (data) => {
-            const { users } = data;
-            setUsers(users);
+            const { posts } = data;
+            setPost(posts);
         },
         failureCallback: (error) => {
             console.log(error);
         },
         requestType: 'GET',
+        authorization: loadJWT(),
     });
   }, []);
   const col = useMemo(() => COLUMNS, []);
   const tableInstance = useTable({
     columns: col,
-    data: users,
+    data: posts,
   })
   const { 
     getTableProps,
@@ -43,7 +43,7 @@ const PostTables = () => {
                 <i className="pe-7s-drawer icon-gradient bg-happy-itmeo">
                 </i>
               </div>
-              <div>Regular Tables
+              <div>Post Tables
                 <div className="page-title-subheading">Tables are the backbone of almost all web applications.
                 </div>
               </div>

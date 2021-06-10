@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 use App\Models\AccountModel;
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
 use ReflectionException;
+use App\Validation\Rules\LoginRules;
 use App\Services\Account\AccountService;
+use App\Controllers\BaseController;
 
 class AuthController extends BaseController
 {
@@ -17,15 +19,11 @@ class AuthController extends BaseController
      */
     public function login()
     {
-        $rules = [
-            'email' => 'required|min_length[6]|max_length[50]|valid_email',
-            'password' => 'required|min_length[8]|max_length[255]'
-        ];
+        $validateRules = new LoginRules();
 
         $input = $this->getRequestInput($this->request);
 
-
-        if (!$this->validateRequest($input, $rules)) {
+        if (!$this->validateRequest($input, $validateRules->rules)) {
             return $this
                 ->getResponse(
                     $this->validator->getErrors(),

@@ -25,7 +25,6 @@ class JWTAuthenticationFilter implements FilterInterface
             return $request;
 
         } catch (Exception $e) {
-
             return Services::response()
                 ->setJSON(
                     [
@@ -33,7 +32,6 @@ class JWTAuthenticationFilter implements FilterInterface
                     ]
                 )
                 ->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
-
         }
     }
 

@@ -35,14 +35,32 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->post('admin/login', 'AuthController::login');
-$routes->group('admin/users', ['filter' => 'auth'], function ($routes) {
-	$routes->get('all', 'AccountController::index');
-	$routes->get('show/(:num)', 'AccountController::show/$1');
-	$routes->post('create', 'AccountController::create');
-	$routes->delete('delete/(:num)', 'AccountController::delete/$1');
-	$routes->put('update/(:num)', 'AccountController::update/$1');
+$routes->post('admin/login', 'Admin\AuthController::login');
+
+// admin routes
+$routes->group('admin', ['filter' => 'auth'], function ($routes) {
+	$routes->group('users', function ($routes) {
+		$routes->get('all', 'Admin\AccountController::index');
+		$routes->get('show/(:num)', 'Admin\AccountController::show/$1');
+		$routes->post('add', 'Admin\AccountController::create');
+		$routes->delete('delete/(:num)', 'Admin\AccountController::delete/$1');
+		$routes->post('update/(:num)', 'Admin\AccountController::update/$1');
+		$routes->post('lock/(:num)', 'Admin\AccountController::lock/$1');
+	});	
+
+	$routes->group('posts', function ($routes) {
+		$routes->get('all', 'Admin\PostController::index');
+	});
 });
+
+// user routes
+$routes->group('post', function ($routes) {
+	$routes->get('all', 'PostController::getPostDataByPage');
+	$routes->get('detail', 'PostController::getPostDetail');
+});
+
+
+
 
 /*
  * --------------------------------------------------------------------

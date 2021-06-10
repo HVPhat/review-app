@@ -53,7 +53,7 @@ const Sidebar = () => {
           </li>
         <li className="app-sidebar__heading">Posts</li>
         <li className={window.location.href=="http://localhost:8000/tables" ? "mm-active" : ""}>
-            <NavLink to={'/users'} >
+            <NavLink to={'/admin/posts'} >
                 <i className="metismenu-icon pe-7s-display2" />
                 Posts
             </NavLink>

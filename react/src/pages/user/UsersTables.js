@@ -1,10 +1,10 @@
 import React, {useMemo, useEffect, useState} from 'react';
 import { makeRequest } from '../../utility/API';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
-import { COLUMNS } from '../../components/UserTablesCol';
-import TableSearchSpan from '../../components/TableSearchSpan';
+import { COLUMNS } from '../../components/table/UserTablesCol';
+import TableSearchSpan from '../../components/table/TableSearchSpan';
 import { loadJWT } from '../../utility/LocalStorage';
-
+import { Link, useParams } from 'react-router-dom';
 
 const UsersTables = () => {
   const [users, setUsers] = useState([]);
@@ -26,7 +26,7 @@ const UsersTables = () => {
   const tableInstance = useTable({
     columns: col,
     data: users,
-    initialState: { pageSize: 1 }
+    initialState: { pageSize: 10 }
   }, useGlobalFilter, usePagination)
   const { 
     getTableProps,
@@ -64,11 +64,12 @@ const UsersTables = () => {
               </div>
             </div>
           </div>
-        </div>            
+        </div>
         <div className="row">
           <div className="col-lg-12">
             <div className="main-card mb-3 card">
               <div className="card-body">
+                <Link to={`/admin/users/create`}><button className="mb-2 mr-2 btn btn-primary">Add user</button></Link>
                 <TableSearchSpan filter={ globalFilter } setFilter={ setGlobalFilter }/>
                 <table {...getTableProps()} className="table table-hover table-bordered">
                   <thead> 

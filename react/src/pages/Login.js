@@ -49,13 +49,13 @@ const Login = ({setIsAuthenticated}) => {
 
     return (
         <div className="login-body">
-        <div class="container">
-        <div class="row">
-			<div class="col-md-5 mx-auto">
+        <div className="container">
+        <div className="row">
+			<div className="col-md-5 mx-auto">
 			<div id="first">
-				<div class="myform form ">
-					 <div class="logo mb-3">
-						 <div class="col-md-12 text-center">
+				<div className="myform form ">
+					 <div className="logo mb-3">
+						 <div className="col-md-12 text-center">
                                 <h1>Login</h1>
                                 {errors && <FailureAlert errors={errors}/>}
                             <Formik

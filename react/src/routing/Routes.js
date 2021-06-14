@@ -9,6 +9,7 @@ import Login from '../pages/Login';
 import { PrivateRoutes } from './PrivateRoutes';
 import EditUser from '../pages/user/EditUser';
 import AddUser from '../pages/user/AddUser';
+import LocationTable from '../pages/location/LocationTable';
 
 const Routes = () => (
     <Switch>
@@ -18,7 +19,10 @@ const Routes = () => (
         <PrivateRoutes path={"/admin/users/edit/:id"} exact component={EditUser}/>
         <PrivateRoutes path={"/admin/users/create"} exact component={AddUser}/>
         <PrivateRoutes path={"/admin/users/:id"} exact component={ShowUser}/>
+        
         <PrivateRoutes path={"/admin/posts"} exact component={PostTables}/>
+
+        <PrivateRoutes path={"/admin/location"} exact component={LocationTable} />
         <Route path={'*'} component={PageNotFound}/>
     </Switch>
 )

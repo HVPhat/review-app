@@ -51,6 +51,10 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 	$routes->group('posts', function ($routes) {
 		$routes->get('all', 'Admin\PostController::index');
 	});
+
+	$routes->group('location', function ($routes) {
+		$routes->get('all', 'Admin\LocationController::index');
+	});
 });
 
 // user routes

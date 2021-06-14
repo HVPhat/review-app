@@ -52,15 +52,15 @@ const Sidebar = () => {
             </NavLink>
           </li>
         <li className="app-sidebar__heading">Posts</li>
-        <li className={window.location.href=="http://localhost:8000/tables" ? "mm-active" : ""}>
-            <NavLink to={'/admin/posts'} >
+        <li>
+            <NavLink to={'/admin/posts'} activeClassName="mm-active" >
                 <i className="metismenu-icon pe-7s-display2" />
                 Posts
             </NavLink>
         </li>
         <li className="app-sidebar__heading">Locations</li>
-        <li className={window.location.href=="http://localhost:8000/tables" ? "mm-active" : ""}>
-            <NavLink to={'/users'} >
+        <li>
+            <NavLink to={'/admin/location'} activeClassName="mm-active" >
                 <i className="metismenu-icon pe-7s-display2" />
                 Locations
             </NavLink>

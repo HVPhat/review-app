@@ -56,6 +56,15 @@ class PostService
 		return $query->get()->getRow();
 	}
 
+    // cout result
+    public function countResult($where=[]){
+        $postTable = $this->model->table;
+        $postAlias = $this->model->alias;
+        $builder = $this->db->table($postTable.' AS '.$postAlias);
+        $builder->like($where);
+        return $builder->countAllResults();
+    }
+
     // set condition
 	protected function buildCondition($query, $condition){
 		foreach($condition as $field=>$val){

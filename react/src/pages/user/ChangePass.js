@@ -1,14 +1,32 @@
 import React from 'react';
-import BaseUserForm from '../../components/form/BaseUserForm';
-import { Redirect } from 'react-router-dom';
-import { useState } from 'react';
+import ChangePassForm from '../../components/form/user/ChangePassForm';
 import FailureAlert from '../../components/alert/FailureAlert';
+import { useParams, Redirect } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { makeRequest } from '../../utility/API';
+import { loadJWT } from '../../utility/LocalStorage';
 
-const AddUser = () => {
+const ChangePass = () => {
+    const { id } = useParams();
     const [shouldRedirect, setShouldRedirect] = useState(false);
     const [errors, setErrors] = useState(null);
+    const [user, setUser] = useState([]);
 
-    
+    useEffect(() => {
+        makeRequest({
+            url: `admin/users/show/${id}`,
+            successCallback: (data) => {
+                const { user_data } = data;
+                setUser(user_data);
+            },
+            failureCallback: (error) => {
+                console.log(error);
+            },
+            requestType: 'GET',
+            authorization: loadJWT(),
+        });
+    },[]);
+
     return shouldRedirect ? ( <Redirect to='/admin/users' /> ) : (
         <>
         <div className="app-main__outer">
@@ -20,7 +38,7 @@ const AddUser = () => {
                     <i className="pe-7s-drawer icon-gradient bg-happy-itmeo">
                     </i>
                   </div>
-                  <div>Add account
+                  <div>Change Password
                       <div className="page-title-subheading">
                   </div>
                 </div>
@@ -32,7 +50,7 @@ const AddUser = () => {
                 <div className="main-card mb-3 card">
                   {errors && <FailureAlert errors={errors}/>}
                   <div className="card-body">
-                      <BaseUserForm user={null} setErrors={setErrors} setShouldRedirect={setShouldRedirect} />
+                      <ChangePassForm id={id} setErrors={setErrors} setShouldRedirect={setShouldRedirect} />
                     </div>
                   </div>
                 </div>
@@ -80,4 +98,4 @@ const AddUser = () => {
     )
 }
 
-export default AddUser
+export default ChangePass

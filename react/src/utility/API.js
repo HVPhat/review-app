@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: 'http://localhost:8000',
+    baseURL: 'http://review-app.local',
     responseType: "json",
 });
 const getRequestConfiguration = (authorization) => {

@@ -27,6 +27,7 @@ class LocationModel extends Model
         'lowest_price',
         'hightgest_price',
         'address',
+        'rating',
         'phone_number',
         'is_approval',
         'approved_by',

@@ -24,6 +24,7 @@ class AccountModel extends Model
         'user_name',
         'email',
         'password',
+        'phone',
         'first_name',
         'last_name',
         'gender',

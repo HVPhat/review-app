@@ -4,6 +4,7 @@ import Dashboard from '../pages/dashboard/Dashboard';
 import PageNotFound from '../pages/PageNotFound';
 import UsersTables from '../pages/user/UsersTables';
 import ShowUser from '../pages/user/ShowUser';
+import ChangePass from '../pages/user/ChangePass';
 import PostTables from '../pages/post/PostTables';
 import Login from '../pages/Login';
 import { PrivateRoutes } from './PrivateRoutes';
@@ -19,6 +20,7 @@ const Routes = () => (
         <PrivateRoutes path={"/admin/users/edit/:id"} exact component={EditUser}/>
         <PrivateRoutes path={"/admin/users/create"} exact component={AddUser}/>
         <PrivateRoutes path={"/admin/users/:id"} exact component={ShowUser}/>
+        <PrivateRoutes path={"/admin/users/changepass/:id"} exact component={ChangePass}/>
         
         <PrivateRoutes path={"/admin/posts"} exact component={PostTables}/>
 

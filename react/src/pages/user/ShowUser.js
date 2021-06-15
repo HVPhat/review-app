@@ -106,6 +106,7 @@ const ShowUser = () => {
 	    		      </div>
 	    		      <div className="form-group">
                           <Link to={`/admin/users/edit/${user.id}`}> <button className="mb-2 mr-2 btn-transition btn btn-outline-primary">Edit</button> </Link>
+                          <Link to={`/admin/users/changepass/${user.id}`}> <button className="mb-2 mr-2 btn-transition btn btn-outline-info">Change Password</button> </Link>
                           <button className="mb-2 mr-2 btn-transition btn btn-outline-warning" onClick={() => {lockUser(user.id)}}>{user.is_locked == 1 ? "Unlock" : "Lock"}</button>
                           <button className="mb-2 mr-2 btn-transition btn btn-outline-danger" onClick={() => {deleteUser(user.id)}}>Delete</button>
 	    		      </div>

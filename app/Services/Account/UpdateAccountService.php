@@ -100,4 +100,24 @@ class UpdateAccountService
         $this->id = $this->accountService->saveData($data);
         return ['message' => "Update success!"];
     }
+
+    public function changePass(){
+        $obj = $this->accountService->getInfo(["id" => $this->id]);
+        $oldPass = $this->request->getPost();
+        if (empty($oldPass)) {
+			//convert request body to associative array
+			$oldPass = json_decode($this->request->getBody(), true);
+		}
+        if(empty($obj)){
+            return false;
+        }
+        $data = [
+            "id"            =>  $this->id,
+            'password'      =>  password_hash($oldPass['password'], PASSWORD_BCRYPT),
+            'updated_at'    =>  date('Y-m-d H:i:s'),
+            'updated_by'    =>  $this->userId,
+        ];
+        $this->id = $this->accountService->saveData($data);
+        return ['message' => "Update success!"];
+    }
 }

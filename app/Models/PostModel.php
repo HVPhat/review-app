@@ -21,6 +21,8 @@ class PostModel extends Model
     protected $allowedFields = [
         'id',
         'title',
+        'hashtag',
+        'rating',
         'content',
         'location',
         'post_image',

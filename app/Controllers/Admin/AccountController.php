@@ -155,4 +155,26 @@ class AccountController extends BaseController
             ]
         );
     }
+
+    public function changePass($id){
+        $userId = $this->getUserInfo()['id'];
+        
+        $this->updateService->setId($id);
+        $this->updateService->setRequest($this->request);
+        $this->updateService->setUser($userId);
+        
+        $response = $this->updateService->setAction(__FUNCTION__);
+        
+        if(!$response){
+            return $this->getResponse(
+                ['errors'=>"Account doesn't exist"],
+                ResponseInterface::HTTP_BAD_REQUEST
+            );
+        }
+        return $this->getResponse(
+            [
+                $response
+            ]
+        );
+    }
 }

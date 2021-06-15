@@ -39,6 +39,7 @@ $routes->post('admin/login', 'Admin\AuthController::login');
 
 // admin routes
 $routes->group('admin', ['filter' => 'auth'], function ($routes) {
+
 	$routes->group('users', function ($routes) {
 		$routes->get('all', 'Admin\AccountController::index');
 		$routes->get('show/(:num)', 'Admin\AccountController::show/$1');
@@ -46,6 +47,7 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
 		$routes->delete('delete/(:num)', 'Admin\AccountController::delete/$1');
 		$routes->post('update/(:num)', 'Admin\AccountController::update/$1');
 		$routes->post('lock/(:num)', 'Admin\AccountController::lock/$1');
+		$routes->post('changepass/(:num)', 'Admin\AccountController::changePass/$1');
 	});	
 
 	$routes->group('posts', function ($routes) {

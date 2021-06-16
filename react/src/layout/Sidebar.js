@@ -47,21 +47,21 @@ const Sidebar = () => {
         <li className="app-sidebar__heading">User</li>
           <li>
             <NavLink to={'/admin/users'} activeClassName="mm-active" >
-                <i className="metismenu-icon pe-7s-display2" />
+                <i className="metismenu-icon pe-7s-user" />
                 Users
             </NavLink>
           </li>
         <li className="app-sidebar__heading">Posts</li>
         <li>
             <NavLink to={'/admin/posts'} activeClassName="mm-active" >
-                <i className="metismenu-icon pe-7s-display2" />
+                <i className="metismenu-icon pe-7s-albums" />
                 Posts
             </NavLink>
         </li>
         <li className="app-sidebar__heading">Locations</li>
         <li>
             <NavLink to={'/admin/location'} activeClassName="mm-active" >
-                <i className="metismenu-icon pe-7s-display2" />
+                <i className="metismenu-icon pe-7s-map-marker" />
                 Locations
             </NavLink>
         </li>

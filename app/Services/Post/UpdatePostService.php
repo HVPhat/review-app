@@ -80,11 +80,11 @@ class UpdatePostService
                 $value->image = "";
             }
 
-            if($value->avatar != null){
-                $value->avatar = [$value->avatar];
-            }else{
-                $value->avatar = "";
-            }
+            // if($value->avatar != null){
+            //     $value->avatar = [$value->avatar];
+            // }else{
+            //     $value->avatar = "";
+            // }
         }
 
         $pagination = [

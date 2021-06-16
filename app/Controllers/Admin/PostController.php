@@ -15,7 +15,7 @@ class PostController extends BaseController
     }
 
     public function index(){
-        $data = $this->service->getData(['*']);
+        $data = $this->updateService->getPostTableData();
         return $this->getResponse(
             [
                 'message' => "Success",

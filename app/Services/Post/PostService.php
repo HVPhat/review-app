@@ -2,6 +2,7 @@
 namespace App\Services\Post;
 use App\Models\PostModel;
 use App\Models\AccountModel;
+use App\Models\LocationModel;
 
 class PostService 
 {
@@ -9,6 +10,7 @@ class PostService
         $this->model = new PostModel();
         $this->db = \Config\Database::connect();
         $this->accountModel = new AccountModel();
+        $this->locationModel = new LocationModel();
     }
 
     public function getModel(){
@@ -22,8 +24,12 @@ class PostService
         $accountTable = $this->accountModel->table;
         $accountAlias = $this->accountModel->alias;
 
+        $locationTable = $this->locationModel->table;
+        $locationAlias = $this->locationModel->alias;
+
         $builder = $this->db->table($postTable.' AS '.$postAlias)
                             ->join($accountTable.' AS '.$accountAlias, $postAlias.'.created_by = '.$accountAlias.'.id')
+                            ->join($locationTable. ' AS '.$locationAlias, $postAlias.'.location = '.$locationAlias.'.id')
                             ->where($this->model->alias.'.is_deleted', DEL_FLG_OFF);
         return $builder;
     }

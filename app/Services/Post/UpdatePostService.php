@@ -32,6 +32,19 @@ class UpdatePostService
         return $this->{$action}();
     }
 
+    public function getPostTableData(){
+        $postModel = new PostModel();
+        $locationModel = new LocationModel();
+        $select = [
+            $postModel->alias.'.id AS id',
+            $postModel->alias.'.title AS title',
+            $postModel->alias.'.view_quantity AS view_quantity',
+            $postModel->alias.'.like_quantity AS like_quantity',
+            $locationModel->alias.'.location_name AS location',
+        ];
+        return $this->service->getData($select);
+    }
+
     public function getPostDataByPage(){
 
         $limit = $this->request->getGet('limit');

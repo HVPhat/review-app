@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2021 at 04:11 PM
+-- Generation Time: Jun 18, 2021 at 08:55 AM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -32,6 +32,7 @@ CREATE TABLE `account` (
   `id` bigint(20) NOT NULL,
   `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `phone` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -55,10 +56,32 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `user_name`, `password`, `phone`, `first_name`, `last_name`, `gender`, `birthday`, `avatar`, `exp_point`, `rank`, `created_at`, `created_by`, `is_deleted`, `deleted_at`, `deleted_by`, `updated_at`, `updated_by`, `is_locked`, `is_admin`) VALUES
-(1, 'VinhPhat', '$2y$10$lDmRRGR4AubSE4UGnrU2Kuo8dHUJ2S7OaX1.w/71XrFgSsrOXpH.y', '0352559972', 'Huỳnh', 'Vinh Phát', 'Male', '2000-07-04', 'upload/users/1/avatar/avatar.jpg', 2000, 2, '2021-05-25 18:48:23', 1, 0, NULL, NULL, NULL, NULL, 0, 1),
-(2, 'TamVipPro', '$2y$10$Tzmbtf1oCJjo87buza9zXekBYpCVKB9hWVM7iUrHC1Q4CnspIDVBy', '0123456789', 'Nguyễn', 'Thành Tâm', 'Male', '2000-07-21', 'upload/users/2/avatar/avatar.jpg', 2000, 1, '2021-05-25 18:48:23', 1, 0, NULL, NULL, '2021-06-08 07:14:02', 1, 0, 0),
-(3, 'ThongDauBuoi', '$2y$10$Tzmbtf1oCJjo87buza9zXekBYpCVKB9hWVM7iUrHC1Q4CnspIDVBy', '0987654321', 'Cao Thị', 'Minh Thông ', 'Female', '2000-07-14', 'C:\\fakepath\\avata.jpg', 2000, 2, '2021-05-25 18:48:23', 1, 0, NULL, NULL, '2021-06-08 07:13:23', 1, 0, 0);
+INSERT INTO `account` (`id`, `user_name`, `password`, `email`, `phone`, `first_name`, `last_name`, `gender`, `birthday`, `avatar`, `exp_point`, `rank`, `created_at`, `created_by`, `is_deleted`, `deleted_at`, `deleted_by`, `updated_at`, `updated_by`, `is_locked`, `is_admin`) VALUES
+(1, 'VinhPhat', '$2y$10$lDmRRGR4AubSE4UGnrU2Kuo8dHUJ2S7OaX1.w/71XrFgSsrOXpH.y', 'phat@gmail.com', '0352559972', 'Huỳnh', 'Vinh Phát', 'Male', '2000-07-04', 'upload/users/1/avatar/avatar.jpg', 2000, 2, '2021-05-25 18:48:23', 1, 0, NULL, NULL, NULL, NULL, 0, 1),
+(2, 'TamVipPro', '$2y$10$Tzmbtf1oCJjo87buza9zXekBYpCVKB9hWVM7iUrHC1Q4CnspIDVBy', 'tam@gmail.com', '0123456789', 'Nguyễn', 'Thành Tâm', 'Male', '2000-07-21', 'upload/users/2/avatar/avatar.jpg', 2000, 1, '2021-05-25 18:48:23', 1, 0, NULL, NULL, '2021-06-08 07:14:02', 1, 0, 0),
+(3, 'ThongDauBuoi', '$2y$10$Tzmbtf1oCJjo87buza9zXekBYpCVKB9hWVM7iUrHC1Q4CnspIDVBy', 'thong@gmail.com', '0987654321', 'Cao Thị', 'Minh Thông ', 'Female', '2000-07-14', 'C:\\fakepath\\avata.jpg', 2000, 2, '2021-05-25 18:48:23', 1, 0, NULL, NULL, '2021-06-16 06:07:40', 1, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth`
+--
+
+CREATE TABLE `auth` (
+  `id` bigint(20) NOT NULL,
+  `user` bigint(20) NOT NULL,
+  `token` text COLLATE utf8mb4_general_ci NOT NULL,
+  `expired_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `auth`
+--
+
+INSERT INTO `auth` (`id`, `user`, `token`, `expired_at`, `created_at`, `updated_at`) VALUES
+(3, 1, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InBoYXRAZ21haWwuY29tIiwiaWF0IjoxNjI0MDA1NDY1LCJleHAiOjE2MjQzNjU0NjV9.5uV42axBKTSFI5sB8umxNLAelDsHbOqQPOtkol9cAgY', '2021-06-22 07:37:45', '2021-06-18 03:37:45', '2021-06-18 03:37:45');
 
 -- --------------------------------------------------------
 
@@ -360,6 +383,12 @@ ALTER TABLE `account`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `auth`
+--
+ALTER TABLE `auth`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
@@ -440,6 +469,12 @@ ALTER TABLE `report_title`
 --
 ALTER TABLE `account`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `auth`
+--
+ALTER TABLE `auth`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `category`

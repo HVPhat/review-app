@@ -6,7 +6,7 @@ use CodeIgniter\HTTP\Response;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
 use ReflectionException;
-use App\Validation\Rules\LoginRules;
+use App\Validation\Rules\UserLoginRules;
 use App\Services\Account\AccountService;
 use App\Controllers\BaseController;
 use App\Models\AuthModel;
@@ -70,7 +70,7 @@ class AuthController extends BaseController
     }
 
     public function login(){
-        $validateRules = new LoginRules();
+        $validateRules = new UserLoginRules();
 
         $input = $this->getRequestInput($this->request);
 
@@ -82,15 +82,16 @@ class AuthController extends BaseController
                 );
         }
         $accountService = new AccountService();
-        $user = $accountService->findUserByEmailAddress($input['email']);
+        $user = $accountService->findUserByPhone($input['phone']);
+
         if(!$user || !password_verify($input['password'], $user['password'])){
             return $this
                 ->getResponse(
-                    ['errors'=>"Email or password incorrect"],
+                    ['errors'=>"Phone or password incorrect"],
                     ResponseInterface::HTTP_BAD_REQUEST
                 );
         }
-       return $this->getJWTForUser($input['email']);
+       return $this->getJWTForUser($user['email']);
     }
 
     public function refreshToken(){

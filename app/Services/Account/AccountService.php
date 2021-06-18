@@ -85,4 +85,16 @@ class AccountService
 
         return $user;
     }
+
+	public function findUserByPhone($phone){
+        $model = new AccountModel();
+        $user = $model
+            ->asArray()
+            ->where(['phone' => $phone])
+            ->first();
+
+        if (!$user)
+            return false;
+        return $user;
+	} 
 }

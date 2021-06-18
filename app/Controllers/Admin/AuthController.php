@@ -32,7 +32,7 @@ class AuthController extends BaseController
         }
         $accountService = new AccountService();
         $user = $accountService->findUserByEmailAddress($input['email']);
-        if(!$user || !password_verify($input['password'], $user['password'])){
+        if(!$user || $user['is_admin']!=IS_ADMIN || !password_verify($input['password'], $user['password'])){
             return $this
                 ->getResponse(
                     ['errors'=>"Email or password incorrect"],
@@ -56,7 +56,8 @@ class AuthController extends BaseController
                     [
                         'message' => 'User authenticated successfully',
                         'user' => $user,
-                        'access_token' => getSignedJWTForUser($emailAddress)
+                        'access_token' => getSignedJWTForUser($emailAddress),
+                        'refresh_token' =>  getRefreshJWTForUser($emailAddress),
                     ]
                 );
         } catch (Exception $exception) {

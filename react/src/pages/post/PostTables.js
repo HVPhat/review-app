@@ -1,7 +1,7 @@
 import React, {useMemo, useEffect, useState} from 'react'
 import { makeRequest } from '../../utility/API'
 import { useTable } from 'react-table'
-import { COLUMNS } from '../../components/table/PostTableCol'
+import { COLUMNS } from '../../components/table/post/PostTableCol'
 import { loadJWT } from '../../utility/LocalStorage';
 
 const PostTables = () => {

@@ -1,11 +1,11 @@
-import TableCellNavLink from '../UserTableCellNavLink';
+import LocationTableCellNavLink from './LocationTableCellNavLink';
 import React from 'react'
 
 export const COLUMNS = [
     {
         Header: "Location name",
         accessor: "location_name",
-        Cell: ({ cell: { value }, row: {original} }) => <TableCellNavLink id={original.id} text={value} />
+        Cell: ({ cell: { value }, row: {original} }) => <LocationTableCellNavLink id={original.id} text={value} />
     },
     {
         Header: "Open time",

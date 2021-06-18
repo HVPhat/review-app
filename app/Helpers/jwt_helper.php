@@ -19,7 +19,7 @@ function validateJWTFromRequest(string $encodedToken)
     $decodedToken = JWT::decode($encodedToken, $key, ['HS256']);
     $accountService = new AccountService();
     // If the user was not found, the User Model throws an exception which is caught and returned to the user as an HTTP_UNAUTHORIZED (401) response
-    $accountService->findUserByEmailAddress($decodedToken->email);
+    return $accountService->findUserByEmailAddress($decodedToken->email);
 }
 
 function getSignedJWTForUser(string $email)
@@ -35,4 +35,19 @@ function getSignedJWTForUser(string $email)
 
     $jwt = JWT::encode($payload, Services::getSecretKey());
     return $jwt;
+}
+
+function getRefreshJWTForUser(string $email)
+{
+    $issuedAtTime = time();
+    $tokenTimeToLive = getenv('REFRESH_JWT_TIME_TO_LIVE');
+    $tokenExpiration = $issuedAtTime + $tokenTimeToLive;
+    $payload = [
+        'email' => $email,
+        'iat' => $issuedAtTime,
+        'exp' => $tokenExpiration,
+    ];
+
+    $jwt = JWT::encode($payload, Services::getSecretKey());
+    return ['token' => $jwt, 'exp' => $tokenExpiration];
 }

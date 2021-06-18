@@ -72,12 +72,12 @@ class AccountService
 		return $id;
 	}
     
-    public function findUserByEmailAddress(string $emailAddress)
+    public function findUserByEmailAddress($emailAddress)
     {
         $model = new AccountModel();
         $user = $model
             ->asArray()
-            ->where(['email' => $emailAddress, 'is_admin' => IS_ADMIN])
+            ->where(['email' => $emailAddress])
             ->first();
 
         if (!$user)

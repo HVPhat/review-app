@@ -36,6 +36,8 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->post('admin/login', 'Admin\AuthController::login');
+$routes->post('login', 'AuthController::login');
+$routes->get('refresh-token', 'AuthController::refreshToken');
 
 // admin routes
 $routes->group('admin', ['filter' => 'auth'], function ($routes) {

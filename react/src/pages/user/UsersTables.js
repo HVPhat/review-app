@@ -1,7 +1,7 @@
 import React, {useMemo, useEffect, useState} from 'react';
 import { makeRequest } from '../../utility/API';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
-import { COLUMNS } from '../../components/table/UserTablesCol';
+import { COLUMNS } from '../../components/table/user/UserTablesCol';
 import TableSearchSpan from '../../components/table/TableSearchSpan';
 import { loadJWT } from '../../utility/LocalStorage';
 import { Link, useParams } from 'react-router-dom';

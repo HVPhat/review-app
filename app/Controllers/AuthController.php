@@ -46,14 +46,43 @@ class AuthController extends BaseController
                 ];
                 $authModel->update($authData->id, $data);
             }
+            $user['id'] = intval($user['id'], 10);
+            $user['rank'] = intval($user['rank'], 10);
+            $user['exp_point'] = intval($user['exp_point'], 10);
+            if($user['gender'] == "Male"){
+                $user['gender'] = 0;
+            }else{
+                $user['gender'] = 1;
+            }
+            unset($user['created_at']);
+            unset($user['created_by']);
+            unset($user['is_deleted']);
+            unset($user['deleted_at']);
+            unset($user['deleted_by']);
+            unset($user['updated_by']);
+            unset($user['updated_at']);
+            unset($user['is_locked']);
+            unset($user['is_admin']);
 
             return $this
                 ->getResponse(
                     [
                         'message' => 'User authenticated successfully',
-                        'user' => $user,
+                        'data'  => [
+                        'id' => $user['id'],
+                        'user_name' => $user['user_name'],
+                        'email' => $user['email'],
+                        'phone' => $user['phone'],
+                        'first_name' => $user['first_name'],
+                        'last_name' => $user['last_name'],
+                        'gender' => $user['gender'],
+                        'birthday' => $user['birthday'],
+                        'avatar' => $user['avatar'],
+                        'exp_point' => $user['exp_point'],
+                        'rank' => $user['rank'],
                         'access_token' => $token,
                         'refresh_token' => $refreshToken['token'],
+                        ],
                     ]
                 );
         } catch (Exception $exception) {
@@ -67,6 +96,7 @@ class AuthController extends BaseController
         }
     }
     public function register(){
+
     }
 
     public function login(){

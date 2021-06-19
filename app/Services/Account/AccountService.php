@@ -32,12 +32,9 @@ class AccountService
     }
 
 	// get row information
-	public function getInfo($where){
+	public function getInfo($selects = [], $where = []){
 		$model_alias = $this->model->alias;
 
-		$selects = [
-			$model_alias.".*",
-		];
 		$query = $this->createQuery()
 						->select($selects);
 		if(is_array($where) && !empty($where)){

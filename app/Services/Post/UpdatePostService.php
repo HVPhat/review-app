@@ -1,6 +1,7 @@
 <?php 
 namespace App\Services\Post;
 use App\Services\Post\PostService;
+use App\Services\Account\AccountService;
 use App\Services\Location\LocationService;
 use App\Models\AccountModel;
 use App\Models\PostModel;
@@ -46,7 +47,6 @@ class UpdatePostService
     }
 
     public function getPostDataByPage(){
-
         $limit = $this->request->getGet('limit');
         $page = $this->request->getGet('page');
 
@@ -57,8 +57,9 @@ class UpdatePostService
             $postModel->alias.'.id AS post_id',
             $postModel->alias.'.post_image AS image',
             $postModel->alias.'.title AS post_title',
+            $postModel->alias.'.created_at AS post_date',
+            $postModel->alias.'.rating AS rating',
             $postModel->alias.'.view_quantity AS view',
-            $postModel->alias.'.like_quantity AS like',
             $accountModel->alias.'.id AS user_id',
             $accountModel->alias.'.user_name',
             $accountModel->alias.'.avatar',
@@ -71,20 +72,21 @@ class UpdatePostService
             $countResult++;
             $value->post_id = intval($value->post_id, 10);
             $value->view = intval($value->view, 10);
-            $value->like = intval($value->like, 10);
             $value->user_id = intval($value->user_id, 10);
+            $value->user = [
+                'id'        =>  $value->user_id,
+                'name'      =>  $value->user_name,
+                'avatar'    =>  $value->avatar,
+            ];
+            unset($value->user_id);
+            unset($value->user_name);
+            unset($value->avatar);
             if($value->image != null){
                 $value->image = json_decode($value->image, true);
                 $value->image = [$value->image[0][0]];
             }else{
                 $value->image = "";
             }
-
-            // if($value->avatar != null){
-            //     $value->avatar = [$value->avatar];
-            // }else{
-            //     $value->avatar = "";
-            // }
         }
 
         $pagination = [
@@ -101,6 +103,7 @@ class UpdatePostService
         $post_id = $this->request->getGet('id');
 
         $accountModel = new AccountModel();
+        $accountService = new AccountService();
         $postModel = new PostModel();
         $locationModel = new LocationModel();
         $locationService = new LocationService();
@@ -115,8 +118,8 @@ class UpdatePostService
             $postModel->alias.'.like_quantity AS like',
             $postModel->alias.'.content AS post_content',
             $accountModel->alias.'.id AS user_id',
-            $accountModel->alias.'.user_name',
-            $accountModel->alias.'.rank AS user_level',
+            // $accountModel->alias.'.user_name',
+            // $accountModel->alias.'.rank AS user_level',
         ];
 
         $data = $this->service->getInfo($selectPost, []);
@@ -124,8 +127,8 @@ class UpdatePostService
         $data->view = intval($data->view, 10);
         $data->post_rating = intval($data->post_rating, 10);
         $data->like = intval($data->like, 10);
-        $data->user_id = intval($data->user_id, 10);
-        $data->user_level = intval($data->user_level, 10);
+        // $data->user_id = intval($data->user_id, 10);
+        // $data->user_level = intval($data->user_level, 10);
         
         if($data->image == null){
             $data->image = [""];
@@ -162,6 +165,23 @@ class UpdatePostService
         $locationData->post_by_location = $this->service->countResult([$postModel->alias.".location" => $locationData->location_id]);
         $data->location = $locationData;
 
+        $selectUser = [
+            $accountModel->alias.'.id AS id',
+            $accountModel->alias.'.user_name as name',
+            $accountModel->alias.'.rank',
+            $accountModel->alias.'.avatar',
+        ];
+        $whereUser = [
+            'id' => $data->user_id,
+        ];
+        $userData = $accountService->getInfo($selectUser, $whereUser);
+        if($userData->avatar == null){
+            $userData->avatar = "";
+        }
+        $userData->id = intval($userData->id, 10);
+        $userData->rank = intval($userData->rank, 10);
+        unset($data->user_id);
+        $data->user = $userData;
         return $data;
     }
 }
